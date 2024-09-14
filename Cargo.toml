@@ -1,0 +1,2 @@
+[workspace]
+members = ["rust_study_day_1", "rust_study_day_2", "rust_study_day_3", "rust_study_day_4"]
