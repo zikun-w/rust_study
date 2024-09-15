@@ -30,6 +30,18 @@ fn func2(c1: &mut i32, c2: &mut String) {
     println!("c1 = {}, c2 = {}", c1, (*c2).to_uppercase());
 }
 
+fn process_n_times(x: i32, f: fn(i32) -> i32, n: i32) -> i32 {
+    let mut result = x;
+    for _ in 0..n {
+        result = f(result);
+    }
+    result
+}
+
+fn add_two(x: i32) -> i32 {
+    x + 2
+}
+
 fn main() {
     let a = 5;
     let b = 7;
@@ -55,4 +67,15 @@ fn main() {
 
     func2(&mut c1, &mut c2);
     println!("c1 = {}, c2 = {}", c1, c2);
+
+    let result = process_n_times(1, add_two, 5);
+    println!("The result is {}", result);
+
+    let vec1 = vec![1, 2, 3, 4, 5];
+    let vec2 = vec1.iter().map(|x| x + 1).collect::<Vec<i32>>();
+    let vec3 = vec1.clone().into_iter().filter(|x| x % 2 == 0).collect::<Vec<_>>();
+    let sum_of_vec1 = vec1.iter().fold(0, |acc, &x| acc + x);
+    println!("{:?}", vec2);
+    println!("{:?}", vec3);
+    println!("The sum of vec1 is {}", sum_of_vec1);
 }
