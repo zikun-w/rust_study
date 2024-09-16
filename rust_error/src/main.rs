@@ -54,4 +54,9 @@ fn main() {
         Some(v) => println!("found at: {}", v),
         None => println!("not found"),
     }
+
+    // panic 
+    let d: i32 = (-100..=100).sum();
+    let t = 100 / d;
+    println!("{}", t);
 }
