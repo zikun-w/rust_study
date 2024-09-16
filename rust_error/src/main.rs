@@ -32,7 +32,30 @@ fn parse_int(s: &str) -> Result<i32, ParseIntError> {
     Ok(num)
 }
 
-fn main() {
+#[derive(Debug)]
+struct MyError {
+    detail: String,
+}
+
+impl std::fmt::Display for MyError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "MyError: {}", self.detail)
+    }
+}
+
+impl std::error::Error for MyError {
+    fn description(&self) -> &str {
+        &self.detail
+    }
+}
+
+fn func() -> Result<(), MyError> {
+    Err(MyError {
+        detail: String::from("some error") ,
+    })
+}
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     match divide(10, 2) {
         Ok(v) => println!("result is: {}", v),
         Err(e) => println!("error: {}", e),
@@ -76,4 +99,12 @@ fn main() {
         Ok(v) => println!("parsed: {}", v),
         Err(e) => println!("error: {}", e),
     }
+
+    match func() {
+        Ok(_) => println!("ok"),
+        Err(e) => println!("error: {}", e),
+    }
+    func()?;
+    println!("ok");
+    Ok(())
 }
