@@ -1,3 +1,5 @@
+use std::num::ParseIntError;
+
 fn divide(x: i32, y: i32) -> Result<f64, String> {
     if y == 0 {
         Err(String::from("divided by zero"))
@@ -7,13 +9,12 @@ fn divide(x: i32, y: i32) -> Result<f64, String> {
 }
 
 fn find_element(vec: &Vec<i32>, target: i32) -> Result<i32, String> {
-    let mut ret = Err(String::from("not found"));
     for (i, e) in vec.iter().enumerate() {
         if *e == target {
-            ret = Ok(i as i32);
+            return Ok(i as i32);
         }
     }
-    ret
+    Err(String::from("not found"))
 }
 
 fn find_element_2(vec: &Vec<i32>, target: i32) -> Option<usize> {
@@ -24,6 +25,11 @@ fn find_element_2(vec: &Vec<i32>, target: i32) -> Option<usize> {
         }
     }
     ret
+}
+
+fn parse_int(s: &str) -> Result<i32, ParseIntError> {
+    let num = s.parse::<i32>()?;
+    Ok(num)
 }
 
 fn main() {
@@ -56,7 +62,18 @@ fn main() {
     }
 
     // panic 
-    let d: i32 = (-100..=100).sum();
-    let t = 100 / d;
-    println!("{}", t);
+    // let d: i32 = (-100..=100).sum();
+    // let t = 100 / d;
+    // println!("{}", t);
+
+    let num = parse_int("101010");
+    match num {
+        Ok(v) => println!("parsed: {}", v),
+        Err(e) => println!("error: {}", e),
+    }
+    let num = parse_int("101010abc");
+    match num {
+        Ok(v) => println!("parsed: {}", v),
+        Err(e) => println!("error: {}", e),
+    }
 }
