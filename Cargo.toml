@@ -1,2 +1,2 @@
 [workspace]
-members = [ "rust_error", "rust_func","rust_study_day_1", "rust_study_day_2", "rust_study_day_3", "rust_study_day_4", "rust_study_day_5"]
+members = [ "rust_error", "rust_func", "rust_lifetime","rust_study_day_1", "rust_study_day_2", "rust_study_day_3", "rust_study_day_4", "rust_study_day_5"]
