@@ -15,6 +15,10 @@ name = "rust_lifetime"
 version = "0.1.0"
 
 [[package]]
+name = "rust_quick_sort"
+version = "0.1.0"
+
+[[package]]
 name = "rust_study_day_1"
 version = "0.1.0"
 
