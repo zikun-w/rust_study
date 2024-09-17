@@ -7,7 +7,9 @@ fn main() {
     }
 }
 
-fn max<'a>(a: &'a i32, b: &'a i32) -> &'a i32 {
+fn max<'a, 'b, 'out>(a: &'a i32, b: &'b i32) -> &'out i32 
+    where 'a: 'out, 'b: 'out
+{
     if a > b {
         a
     } else {
